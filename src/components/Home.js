@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import { push } from 'react-router-redux'
-import { bindActionCreators } from 'redux'
+//import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import logo from './../assets/logo.svg';
 import './Home.scss';
+import { incrementCounter } from './../store/actions';
 
-const mapDispatchToProps = dispatch => bindActionCreators({
+/*const mapDispatchToProps = dispatch => bindActionCreators({
   changePage: () => push('/about')
-}, dispatch);
+}, dispatch);*/
+
 
 class Home extends Component {
 
-  changePage() {
-    console.log('changePage');
-    push('/about');
-  }
+  /*  changePage() {
+      console.log('changePage');
+      push('/about');
+    }*/
 
   render() {
     return (
@@ -32,6 +34,9 @@ class Home extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  counter: state.counter
+})
 
-export default connect(null, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, incrementCounter)(Home);
 

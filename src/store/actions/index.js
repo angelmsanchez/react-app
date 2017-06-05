@@ -13,3 +13,15 @@ export const toggleTodo = (id) => {
     id
   }
 }
+
+export const incrementCounter = () => {
+  return {
+    type: 'INCREMENT'
+  }
+}
+
+export const decrementCounter = () => {
+  return {
+    type: 'DECREMENT'
+  }
+}
