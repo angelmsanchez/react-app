@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { push } from 'react-router-redux'
-//import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import logo from './../assets/logo.svg';
 import './Home.scss';
@@ -13,10 +13,15 @@ import { incrementCounter } from './../store/actions';
 
 class Home extends Component {
 
-  /*  changePage() {
-      console.log('changePage');
-      push('/about');
-    }*/
+  constructor(props) {
+    super(props);
+    console.log('Home', props);
+  }
+
+  changePage() {
+    console.log('changePage');
+    push('/about');
+  }
 
   render() {
     return (
@@ -28,6 +33,11 @@ class Home extends Component {
             <h2>React Home</h2>
             <button onClick={() => this.changePage()}>Go to about page via redux</button>
           </div>
+          <div className="header">
+            <button incrementCounter={this.props.actions.incrementCounter}>Increment via redux</button>
+          {/*  <button onClick={() => this.props.actions.incrementCounter()}>Increment via redux</button>*/}
+            <p>Counter: {this.props.counter}</p>
+          </div>
         </div>
       </div>
     );
@@ -36,7 +46,11 @@ class Home extends Component {
 
 const mapStateToProps = (state) => ({
   counter: state.counter
-})
+});
 
-export default connect(mapStateToProps, incrementCounter)(Home);
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(incrementCounter, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
