@@ -34,7 +34,7 @@ class Home extends Component {
             <button onClick={() => this.changePage()}>Go to about page via redux</button>
           </div>
           <div className="header">
-            <button incrementCounter={this.props.actions.incrementCounter}>Increment via redux</button>
+            <button onClick={this.props.incrementCounter}>Increment via redux</button>
           {/*  <button onClick={() => this.props.actions.incrementCounter()}>Increment via redux</button>*/}
             <p>Counter: {this.props.counter}</p>
           </div>
@@ -44,12 +44,12 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   counter: state.counter
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(incrementCounter, dispatch)
+    incrementCounter: bindActionCreators(incrementCounter, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
